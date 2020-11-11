@@ -1,9 +1,6 @@
 #include "Wordset.hpp"
 #include <string>
 #include <cmath>
-#include <deque>
-#include <sstream>
-#include <vector>
 
 const int BASE_TO_USE = 41;
 const double LOAD_LIMIT = 0.27;
@@ -47,7 +44,10 @@ std::string bigMultiply(std::string num1, std::string num2)
 
     // will keep the result number in vector 
     // in reverse order
-    std::vector<int> result(len1 + len2, 0);
+    int result[len1 + len2];
+    for (int i = 0; i < len1 + len2; ++i) {
+        result[i] = 0;
+    }
 
     // Below two indexes are used to find positions
     // in result.  
@@ -94,7 +94,7 @@ std::string bigMultiply(std::string num1, std::string num2)
     }
 
     // ignore '0's from the right 
-    int i = result.size() - 1;
+    int i = len1 + len2 - 1;
     while (i>=0 && result[i] == 0)
         i--;
 
@@ -127,6 +127,17 @@ int hashFunction(std::string s, int base, int mod)
     }
 	return bigMod(result, mod);
 }
+
+//int hashFunction(std::string s, int base, int mod)
+//{
+//    int sz = s.size();
+//    int result = 0;
+//    for (int i = sz - 1; i >=0 ; --i) {
+//        int value = s[i] - 'a';
+//        result += value * pow(base, sz - i - 1);
+//    }
+//	return result % mod;
+//}
 
 
 WordSet::WordSet()
