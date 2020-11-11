@@ -145,7 +145,7 @@ WordSet::~WordSet()
 
 void WordSet::insert(std::string s)
 {
-    int hash = hashFunction(s, capacity, BASE_TO_USE);
+    int hash = hashFunction(s, BASE_TO_USE, capacity);
     int count = 0;
     while (array[hash] != nullptr) {
         hash += pow(++count, 2);
@@ -164,7 +164,7 @@ void WordSet::insert(std::string s)
         for (int i = 0; i < old_capacity; ++i) {
             if (array[i] != nullptr)
             {
-                int hash_new = hashFunction(*array[i], capacity, BASE_TO_USE);
+                int hash_new = hashFunction(*array[i], BASE_TO_USE, capacity);
                 int count_new = 0;
                 while (new_array[hash_new] != nullptr) {
                     hash_new += pow(++count_new, 2);
@@ -182,7 +182,7 @@ void WordSet::insert(std::string s)
 
 bool WordSet::contains(std::string s) const
 {
-    int hash = hashFunction(s, capacity, BASE_TO_USE);
+    int hash = hashFunction(s, BASE_TO_USE, capacity);
     int count = 0;
     while (array[hash] != nullptr) {
         std::string t = *array[hash];

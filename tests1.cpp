@@ -92,7 +92,6 @@ TEST(ConvertWords, AntToEat)
 	loadWordsIntoTable(words, in);
 
  	std::string r = convert("ant", "eat", words);
- 	std::cout << r;
  	EXPECT_TRUE(r == "ant --> aft --> oft --> oat --> eat");
  	// of course, if yours outputs a way to do this with exactly 5 words, it is also correct.
  	// So maybe confirm if yours is right or not if this test appears to be failing.
